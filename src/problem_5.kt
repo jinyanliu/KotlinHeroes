@@ -29,29 +29,31 @@ fun main() {
     }
 
     for (input in inputList) {
+        var hasResult = false
+
         val inputDigitList = (1..input).toList()
 
-        if (input in 1..3) {
-            println(-1)
-            continue
-        }
-
-        if (input == 4) {
-            println("3 1 4 2")
-            continue
-        }
-
         val originalList = inputDigitList.toMutableList()
-        val result = dfs(1, arrayListOf(), originalList)
-        var resultString = ""
-        if (result != null) {
-            for (item in result) {
-                resultString += "$item "
+
+        for (digit in originalList) {
+
+            val result = dfs(digit, arrayListOf(), originalList)
+            var resultString = ""
+            if (result != null) {
+                for (item in result) {
+                    resultString += "$item "
+                }
+                hasResult = true
+                println(resultString)
+                break
             }
-            println(resultString)
+
+        }
+
+        if (!hasResult) {
+            println(-1)
         }
     }
-
 }
 
 fun dfs(start: Int, path: MutableList<Int>, originalList: MutableList<Int>): List<Int>? {
