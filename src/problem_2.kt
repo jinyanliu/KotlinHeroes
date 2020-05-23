@@ -29,36 +29,35 @@ fun main() {
     }
 
     for (x in 0 until inputList.size step 4) {
-        val (a, b, c, d) = listOf(inputList[x], inputList[x + 1], inputList[x + 2], inputList[x + 3]).sorted()
-        val arrayList = arrayListOf(a, b, c, d)
-        var hasEqual = false
-        for (i in 0 until 3) {
-            if (arrayList[i] == arrayList[i + 1]) {
-                hasEqual = true
-                val expectedValue = arrayList[i]
-                if (expectedValue == 0) {
-                    resultList.add(false)
-                    break
-                }
 
-                var actualValue = 0
+        val (a, b, c, d) = listOf(inputList[x], inputList[x + 1], inputList[x + 2], inputList[x + 3])
 
-                arrayList.removeAt(i)
-                arrayList.removeAt(i)
-                for (side in arrayList) {
-                    actualValue += side
-                }
-
-                resultList.add(expectedValue == actualValue)
-                break
-            }
-        }
-        if (!hasEqual) {
+        if (a == 0 || b == 0 || c == 0 || d == 0) {
             resultList.add(false)
+            continue
         }
+
+        if (a == c) {
+            resultList.add(a == b + d)
+            continue
+        }
+        if (a == d) {
+            resultList.add(a == b + c)
+            continue
+        }
+        if (b == c) {
+            resultList.add(b == a + d)
+            continue
+        }
+        if (b == d) {
+            resultList.add(b == a + c)
+            continue
+        }
+
+        resultList.add(false)
     }
 
     for (result in resultList) {
-        if (result) println("YES") else println("NO")
+        if (result) println("Yes") else println("No")
     }
 }

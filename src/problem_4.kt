@@ -2,6 +2,7 @@ import java.util.*
 
 /**
  * D. Alice, Bob and Candies
+ * Input
  * 7
  * 11
  * 3 1 4 1 5 9 2 6 5 3 5
